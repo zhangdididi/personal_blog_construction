@@ -1,1 +1,32 @@
+package dison.controller;
 
+import dison.Service.CategoryService;
+import dison.model.Category;
+import dison.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
+
+@Controller
+public class CategoryController {
+
+    @Autowired
+    private CategoryService categoryService;
+
+    /**
+     * 新建分类
+     * @param session 通过session来获取到用户User
+     * @param category 设置这个类别的名称来进行注入
+     * @return 重定向
+     */
+    @RequestMapping(value = "/c/add", method = RequestMethod.POST)
+    public String addCategory(HttpSession session, Category category) {
+        User user = (User) session.getAttribute("user");
+        category.setUserId(user.getId());
+        int num = categoryService.insert(category);
+        return "redirect:/writer";
+    }
+}
