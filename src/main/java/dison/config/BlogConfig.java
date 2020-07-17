@@ -9,7 +9,7 @@ public class BlogConfig implements WebMvcConfigurer {
 
 
     /**
-     *
+     * 增加拦截器来排除部分路径
      * @param registry
      */
     @Override
