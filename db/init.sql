@@ -1,5 +1,4 @@
 use blog;
-
 BEGIN;
 
 INSERT INTO user (username, nickname, password, avatar) VALUES
